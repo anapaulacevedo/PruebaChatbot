@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Modo Incógnito</title>
+</head>
+<body>
+    <h1>Prueba de Detección de Modo Incógnito</h1>
+    <p id="result">Verificando si el navegador está en modo incógnito...</p>
+
+    <script src="https://cdn.jsdelivr.net/gh/Joe12387/detectIncognito@main/dist/es5/detectIncognito.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof detectIncognito !== 'undefined') {
+                detectIncognito().then((result) => {
+                    document.getElementById('result').textContent = result.isPrivate ? 
+                        "El navegador está en modo incógnito." : 
+                        "El navegador NO está en modo incógnito.";
+                }).catch((error) => {
+                    console.error("Error al detectar el modo incógnito:", error);
+                    document.getElementById('result').textContent = "Ocurrió un error al detectar el modo incógnito.";
+                });
+            } else {
+                console.error('El script detectIncognito no está cargado correctamente.');
+                document.getElementById('result').textContent = "El script detectIncognito no está cargado correctamente.";
+            }
+        });
+    </script>
+</body>
+</html>
